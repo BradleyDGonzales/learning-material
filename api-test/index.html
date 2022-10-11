@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <img src="#">
+  <button id="myBtn">Click</button>
+  <script>
+    const myBtn = document.getElementById('myBtn');
+    const img = document.querySelector('img');
+    const API_KEY = 'L1kB3E7YDkQ0p2FwXWdeeXiYIT9fsTy8';
+    let userChoice = prompt('Search for a GIF');
+    function newGif() {
+      fetch(`https://api.giphy.com/v1/gifs/translate?api_key=L1kB3E7YDkQ0p2FwXWdeeXiYIT9fsTy8&s=${userChoice}`)
+        .then(function (response) {
+          return response.json();
+        })
+        .then(function (response) {
+          img.src = response.data.images.original.url;
+        })
+        .catch(function (err) {
+          console.log(err);
+        })
+    }
+    newGif();
+    myBtn.addEventListener('click', newGif)
+  </script>
+</body>
+
+</html>
